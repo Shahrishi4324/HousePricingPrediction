@@ -40,3 +40,32 @@ model.fit(X_train, y_train)
 # Print the coefficients and intercept of the model
 print(f"Coefficients: {model.coef_}")
 print(f"Intercept: {model.intercept_}")
+
+from sklearn.metrics import mean_squared_error, r2_score
+
+# Predict the target values for the test set
+y_pred = model.predict(X_test)
+
+# Calculate and print the Mean Squared Error and R-squared score
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Squared Error: {mse}")
+print(f"R-squared Score: {r2}")
+
+import matplotlib.pyplot as plt
+
+# Plot the actual vs predicted values
+plt.scatter(y_test, y_pred)
+plt.xlabel('Actual Prices')
+plt.ylabel('Predicted Prices')
+plt.title('Actual vs Predicted Prices')
+plt.show()
+
+# Plot the residuals
+residuals = y_test - y_pred
+plt.hist(residuals, bins=20)
+plt.xlabel('Residuals')
+plt.ylabel('Frequency')
+plt.title('Residuals Distribution')
+plt.show()
